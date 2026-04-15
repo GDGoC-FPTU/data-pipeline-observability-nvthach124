@@ -1,22 +1,19 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=23573941&assignment_repo_type=AssignmentRepo)
 # Day 10 Lab: Data Pipeline & Data Observability
 
-**Student Email:** email@example.com
-**Name:** (Dien ten cua ban)
-
----
+**Student ID:** 2A202600237
+**Student Email:** 26ai.thachnv@vinuni.edu.vn
+**Name:** Nguyễn Văn Thạch
 
 ## Mo ta
 
-(Mo ta ngan gon bai lab va nhung gi ban da lam)
+Lab xây dựng một ETL pipeline đơn giản để đọc dữ liệu Json, lọc các record lỗi, chuẩn hóa category, tinh gia giam 10%, va lưu kết quả ra file CSV. Ngoài phần ETL, bài làm còn có stress test để so sánh hành vi của agent khi dùng dữ liệu sạch và dữ liệu rác.
 
----
 
-## Cach chay (How to Run)
+## Cach chay
 
-### Prerequisites
+### Cai dat
 ```bash
-pip install pandas
+pip install pandas pytest
 ```
 
 ### Chay ETL Pipeline
@@ -24,24 +21,25 @@ pip install pandas
 python solution.py
 ```
 
-### Chay Agent Simulation (Stress Test)
-```bash
-# Mo ta cach ban chay thi nghiem Clean vs Garbage data
-```
+Lenh nay tao ra file `processed_data.csv`.
 
----
+### Chay Stress Test
+```bash
+python generate_garbage.py
+python agent_simulation.py
+```
 
 ## Cau truc thu muc
 
+```text
+├── solution.py
+├── processed_data.csv
+├── experiment_report.md
+├── raw_data.json
+├── generate_garbage.py
+└── README.md
 ```
-├── solution.py              # ETL Pipeline script
-├── processed_data.csv       # Output cua pipeline
-├── experiment_report.md     # Bao cao thi nghiem
-└── README.md                # File nay
-```
-
----
 
 ## Ket qua
 
-(Tom tat ket qua: bao nhieu records da xu ly, bao nhieu bi loai, v.v.)
+Pipeline đã xử lý 5 bản ghi đầu vào, giữ lại 3 bản ghi hợp lệ và loại bỏ 2 bản ghi không hợp lệ. Output có đầy đủ các cột `discounted_price` và `processed_at`. Agent simulation cho thấy dữ liệu sạch trả về sản phẩm hợp lý, trong khi dữ liệu rác làm mờ hiêu quả của câu trả lời và để agent chọn nhầm mẫu thông tin.
